@@ -12,8 +12,9 @@ Each header file is technically it's own library with the only true dependency b
 |---------------	|-----------------------------------------------------------------------------------------	|
 | bcore.h       	| Contains core functions essential to blib                                               	|
 | butils.h      	| Utility functions that make life easier                                                 	|
-| bntwrk.h      	| Networking functions for a number of protocols                                          	|
+| bnetwork.h      	| Networking functions for a number of protocols                                          	|
 | bstructures.h 	| Contains implementations of a number of data structures (see .h file for complete list) 	|
 | berror.h      	| Error handling functions                                                                	|
 | bcompress.h   	| Compression functions for a number of data types (audio/video/data)                     	|
 | bcrypto.h     	| Crypto implementation based on Monocypher and TweetNaCl                                 	|
+| bsockets.h     	| Implementation of sockets from Beej's guide to Networking                                 |
