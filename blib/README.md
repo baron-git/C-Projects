@@ -18,3 +18,5 @@ Each header file is technically it's own library with the only true dependency b
 | bcompress.h   	| Compression functions for a number of data types (audio/video/data)                     	|
 | bcrypto.h     	| Crypto implementation based on Monocypher and TweetNaCl                                 	|
 | bsockets.h     	| Implementation of sockets from Beej's guide to Networking                                 |
+| btemplate.h     	| Template for single header libraries                                                      |
+| binclude.h     	| Easy way to include all blibs                                                             |
