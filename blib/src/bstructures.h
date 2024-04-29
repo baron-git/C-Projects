@@ -32,40 +32,82 @@ extern "C" {  // ensures that the functions are exposed as C functions when incl
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 
 // Define public macros and constants
-#define MYLIB_VERSION "1.0"
+#define BSTRUCTURES_VERSION "1.0"
 
 // Define public types and structs
-typedef struct {
-    int id;
-    char *name;
-} MyStruct;
+struct BSTRUCT_NODE {
+  long data;
+  struct BSTRUCT_NODE* next;
+};
 
-// Declaration of a static function (only visible in this translation unit)
-static void privateFunction(const char *message) { // privateFunction is declared as static, which means it can only be 
-    printf("Private Message: %s\n", message);      // called within this file. This helps to encapsulate the functionality and keep it private to the implementation.
+struct BSTRUCT_NODE* head = NULL;
+
+void BSTRUCT_SLL_INSERT(long value) {
+	struct BSTRUCT_NODE* new_node = (struct BSTRUCT_NODE*)malloc(sizeof(struct BSTRUCT_NODE));
+	new_node->data = value;
+	new_node->next = NULL;
+
+	if (head == NULL) {
+		head = new_node;
+	} else {
+		struct BSTRUCT_NODE* current = head;
+		while (current->next != NULL) {
+			current = current->next;
+		}
+		current->next = new_node;
+	}
 }
 
-// Public API function declarations
-void myPublicFunction(int data);
-
-// Inline function definitions
-static inline void myInlineFunction(int data) {
-    printf("Inline Function Called with: %d\n", data);
+struct BSTRUCT_NODE* BSTRUCT_SLL_SEARCH(long value) {
+	struct BSTRUCT_NODE* current = head;
+	while (current != NULL) {
+		if (current->data == value) {
+			return current;
+		}
+		current = current->next;
+	}
+	return NULL;
 }
 
-// Function implementations
-static void myStaticFunctionImplementation(int count) {
-    for (int i = 0; i < count; i++) {
-        privateFunction("Looping!");
-    }
+void BSTRUCT_SLL_DELETE(long value) {
+	if (head == NULL) {
+		printf("List is empty.\n");
+		return;
+	}
+
+	struct BSTRUCT_NODE* current = head;
+	struct BSTRUCT_NODE* previous = NULL;
+
+	while (current != NULL) {
+		if (current->data == value) {
+			if (previous == NULL) {
+				head = current->next;
+			} else {
+			previous->next = current->next;
+		}
+		free(current);
+		return;
+	}
+	previous = current;
+	current = current->next;
 }
 
-void myPublicFunction(int data) {
-    printf("Public Function Called with: %d\n", data);
-    myStaticFunctionImplementation(data);
+	printf("Element not found in list.\n");
 }
+
+void BSTRUCT_SLL_TRAVERSE() {  
+    struct BSTRUCT_NODE* current = head;  
+    while (current != NULL) {  
+        printf("%li ", current->data);  
+        current = current->next;
+		}
+		printf("\n");
+}  
+
+
 
 #ifdef __cplusplus
 }
