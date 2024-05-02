@@ -43,12 +43,15 @@ struct BSTRUCT_NODE {
   struct BSTRUCT_NODE* next;
 };
 
+
+
 struct BSTRUCT_NODE* head = NULL;
 
 void BSTRUCT_SLL_INSERT(long value) {
 	struct BSTRUCT_NODE* new_node = (struct BSTRUCT_NODE*)malloc(sizeof(struct BSTRUCT_NODE));
 	new_node->data = value;
 	new_node->next = NULL;
+  
 
 	if (head == NULL) {
 		head = new_node;
@@ -74,7 +77,7 @@ struct BSTRUCT_NODE* BSTRUCT_SLL_SEARCH(long value) {
 
 void BSTRUCT_SLL_DELETE(long value) {
 	if (head == NULL) {
-		printf("List is empty.\n");
+		puts("List is empty.");
 		return;
 	}
 
@@ -95,7 +98,7 @@ void BSTRUCT_SLL_DELETE(long value) {
 	current = current->next;
 }
 
-	printf("Element not found in list.\n");
+	puts("Element not found in list.");
 }
 
 void BSTRUCT_SLL_TRAVERSE() {  
